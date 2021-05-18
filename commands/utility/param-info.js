@@ -8,6 +8,6 @@ module.exports = {
 			return message.channel.send('bar');
 		}
 
-		message.channel.send(`Parametros: ${args}\nLongitud de Parametros: ${args.length}`);
+		message.channel.send(`Parametros: ${args}\nCantidad de Parametros: ${args.length}`);
 	},
 };
