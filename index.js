@@ -8,12 +8,17 @@ client.on("ready", () => {
   console.log(`Su estado actual es ${client.user.presence.status}`);
 });
 
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
-  // Con SET agrego un nuevo elemento a la coleccion de comandos
-  // donde la clave es el nombre del comando y el valor es el modulo exportado
-  client.commands.set(command.name, command);
+//Se añadio soporte para subdirectorios
+const commandFolders = fs.readdirSync('./commands');
+
+for (const folder of commandFolders) {
+  const commandFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith('.js'));
+  for (const file of commandFiles) {
+    const command = require(`./commands/${folder}/${file}`);
+    // Con SET agrego un nuevo elemento a la coleccion de comandos
+    // donde la clave es el nombre del comando y el valor es el modulo exportado
+    client.commands.set(command.name, command);
+  }
 }
 
 client.on('message', message => {
