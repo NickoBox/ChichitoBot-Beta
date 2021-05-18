@@ -17,7 +17,7 @@ client.on("message", message => {
 
   // Comandos de prueba
   if(command === 'hola') {
-    message.channel.send(`Hola ${message.author.tag}!`);
+    message.channel.send(`Hola ${message.author.username}!`);
   } else
   if (command === 'help') {
     message.channel.send(`Por ahora el unico comando que tengo habilitado es ${process.env.PREFIX}hola`);
