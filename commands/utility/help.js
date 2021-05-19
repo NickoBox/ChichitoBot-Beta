@@ -11,7 +11,7 @@ module.exports = {
 		if (!args.length) {
 			data.push('Aquí tienes una lista de mis comandos:');
 			data.push(commands.map(command => command.name).join(', '));
-			data.push(`\nPuedes usar \`${prefix}help [nombre de comando]\` para obtener informacion especifica de cada comando.`);
+			data.push(`\nPuedes usar \`${process.env.PREFIX}help [nombre de comando]\` para obtener informacion especifica de cada comando.`);
 
 			return message.author.send(data, { split: true })
 				.then(() => {
@@ -35,7 +35,7 @@ module.exports = {
 
 		if (command.aliases) data.push(`**Alias:** ${command.aliases.join(', ')}`);
 		if (command.description) data.push(`**Descripcion:** ${command.description}`);
-		if (command.usage) data.push(`**Modo de uso:** ${prefix}${command.name} ${command.usage}`);
+		if (command.usage) data.push(`**Modo de uso:** ${process.env.PREFIX}${command.name} ${command.usage}`);
 
 		data.push(`**Enfriamiento:** ${command.cooldown || 3} segundo(s)`);
 
