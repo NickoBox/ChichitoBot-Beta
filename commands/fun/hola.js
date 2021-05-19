@@ -2,6 +2,9 @@ module.exports = {
 	name: 'hola',
 	description: 'El bot te saludara!',
 	execute(message, args) {
-		message.channel.send(`Hola ${message.author}`);
+		if (message.author.username == 'Lu Murga') {
+			return message.channel.send('PERO QUE DICE SEÑORAAA?');
+		}
+		return message.channel.send(`Hola ${message.author}`);
 	},
 };
