@@ -31,6 +31,10 @@ client.on('message', message => {
   
   const command = client.commands.get(commandName);
   
+  if (command.guildOnly && message.channel.type === 'dm') {
+    return message.reply('No puedo ejecutar este comando por mensaje privado.');
+  }
+
   if (command.args && !args.length) {
     let reply = `No has enviado ningun parametro, ${message.author}!`;
 
