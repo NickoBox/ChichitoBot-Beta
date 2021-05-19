@@ -38,7 +38,14 @@ client.on('message', message => {
   // Si el mensaje no es un comando no hagas nada.
   if (!client.commands.has(commandName)) return;
   
-  const command = client.commands.get(commandName);
+  // INICIO ALIAS
+  // Se agrego soporte para alias a los comandos.
+  // Los alias deben ser siempre arrays de cadenas de texto.
+  const command = client.commands.get(commandName)
+    || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+
+	if (!command) return;
+  // FIN ALIAS
   
   // INICIO COMANDO DE SERVER
     // Se agrego soporte para distinguir entre comandos generales y comandos de servidor.
