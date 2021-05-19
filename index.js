@@ -32,7 +32,13 @@ client.on('message', message => {
   const command = client.commands.get(commandName);
   
   if (command.args && !args.length) {
-    return message.channel.send(`No has enviado ningun parametro, ${message.author}!`);
+    let reply = `No has enviado ningun parametro, ${message.author}!`;
+
+    if (command.usage) {
+      reply += `\nEste comando deberia usarse asi: \`${prefix}${command.name} ${command.usage}\``;
+    }
+  
+    return message.channel.send(reply);
   }
 
   try {
