@@ -34,16 +34,14 @@ client.on('message', message => {
 	const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/);
   const commandName = args.shift().toLowerCase();
   // FIN PARSEO
-
-  // Si el mensaje no es un comando no hagas nada.
-  if (!client.commands.has(commandName)) return;
   
   // INICIO ALIAS
-  // Se agrego soporte para alias a los comandos.
-  // Los alias deben ser siempre arrays de cadenas de texto.
+    // Se agrego soporte para alias a los comandos.
+    // Los alias deben ser siempre arrays de cadenas de texto.
   const command = client.commands.get(commandName)
     || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
+    // Si el mensaje no es un comando no hagas nada.
 	if (!command) return;
   // FIN ALIAS
   
